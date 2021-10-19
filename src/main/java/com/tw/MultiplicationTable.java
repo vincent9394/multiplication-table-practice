@@ -2,14 +2,18 @@ package com.tw;
 
 public class MultiplicationTable {
     public String create(int start, int end) {
+        if(isValid(start,end)){
+            return generateTable(start,end);
+        }
+
         return null;
+
     }
 
     public Boolean isValid(int start, int end) {
-        if (isInRange(start)&&isInRange(end)&&isStartNotBiggerThanEnd(start,end)){
-            //generateTable();
-        }
-        return null;
+        return isInRange(start)&&isInRange(end)&&isStartNotBiggerThanEnd(start,end);
+
+
     }
 
     public Boolean isInRange(int number) {
@@ -23,17 +27,27 @@ public class MultiplicationTable {
     }
 
     public String generateTable(int start, int end) {
-
-        return null;
+        String table = "";
+        for(int i=start; i<=end; i++){
+            table = table + generateLine(start,i) ;
+            if (i<end){
+                table +=  "\n";
+            }
+        }
+        return table;
     }
 
     public String generateLine(int start, int row) {
-
-        return null;
+        String singleLine ="";
+        for(int i=start; i<=row; i++){
+            singleLine =singleLine + generateSingleExpression(i,row) + "  ";
+        }
+        singleLine= singleLine.trim();
+        return singleLine;
     }
 
     public String generateSingleExpression(int multiplicand, int multiplier) {
-        String  singleLine=  multiplicand + "*" + multiplier + "=" + (multiplicand * multiplier);
-        return singleLine;
+        String  singleUnit=  multiplicand + "*" + multiplier + "=" + (multiplicand * multiplier);
+        return singleUnit;
     }
 }
